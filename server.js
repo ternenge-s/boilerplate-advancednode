@@ -17,20 +17,20 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-                                  
 myDB(async (client) => {
   const myDataBase = await client.db('database').collection('users');
-
 
   // Be sure to add this...
 }).catch((e) => {
